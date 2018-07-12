@@ -14,12 +14,21 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post("/echo", function(req, res) {
-  var speech =
+  var rank =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
-    req.body.queryResult.parameters.text
-      ? req.body.queryResult.parameters.text
-      : "Seems like some problem. Speak again.";
+    req.body.queryResult.parameters.rank
+      ? req.body.queryResult.parameters.rank
+      : "Seems like no rank was given";
+  
+  var category =
+    req.body.queryResult &&
+    req.body.queryResult.parameters &&
+    req.body.queryResult.parameters.category
+      ? req.body.queryResult.parameters.category
+      : "Seems like no category was given";
+
+  speech = "Your rank is "+ rank.toString() + " and your category is " + cat;
   return res.json({
     "fulfillmentMessages": [{"text": {"text": [speech]}}],
     "source":""
