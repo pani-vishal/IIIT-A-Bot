@@ -28,7 +28,7 @@ restService.post("/echo", function(req, res) {
       ? req.body.queryResult.parameters.category
       : "Seems like no category was given";
 
-  speech = "Your rank is "+ rank.toString() + " and your category is " + cat;
+  speech = "Your rank is "+ rank + " and your category is " + category;
   return res.json({
     "fulfillmentMessages": [{"text": {"text": [speech]}}],
     "source":""
